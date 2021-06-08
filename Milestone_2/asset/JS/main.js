@@ -26,16 +26,12 @@ const app = new Vue(
                             this.arraySearch = resp.data.results
                             console.log(this.arraySearch)
 
-
-
-
-
-
-
                             //Messaggio di errore per mancata ricerca
                             if (resp.data.total_results == '') {
                                 // console.log('errore');
                                 this.errore = 'Nothing to show, try again'
+                            } else {
+                                this.errore = ''
                             }
 
 

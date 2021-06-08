@@ -13,7 +13,7 @@
         <div class="container">
 
 
-            <input v-model="userSearch" placeholder="Looking for anything?">
+            <input v-model="userSearch" placeholder="Looking for anything?" @keyup.enter="callApi()">
             <button @click="callApi()">
                 <span>Search</span>
             </button>
