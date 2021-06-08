@@ -8,6 +8,7 @@ const app = new Vue(
             partialUrl: 'https://api.themoviedb.org/3/search/multi?api_key=3e08cf6c1a9102d41852f4ea927dbc55&query=',
             arraySearch: [],
             visible: true,
+            flags: 'https://unpkg.com/language-icons/icons/',
 
         },
 
