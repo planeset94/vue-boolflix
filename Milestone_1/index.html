@@ -12,8 +12,18 @@
     <div id="root">
         <div class="container">
 
-            <ul>
-                <li></li>
+            <ul v-for="el in arraySearch">
+                <li>
+                    <ol>
+                        <li>Titolo: {{el.name}}{{el.title}}</li>
+                        <li>Titolo originale: {{el.original_name}} {{el.original_title}}</li>
+                        <li>Lingua: {{el.original_language}}</li>
+                        <li>Voto: {{el.vote_average}}</li>
+                    </ol>
+
+
+                </li>
+
             </ul>
 
 
