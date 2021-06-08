@@ -16,6 +16,7 @@ const app = new Vue(
             callApi() {
                 if (this.userSearch == '') {
                     this.visible = false
+                    this.errore = ''
                 } else {
                     this.visible = true
                     axios
@@ -23,7 +24,21 @@ const app = new Vue(
                         .then(resp => {
                             // console.log(resp.data.results);
                             this.arraySearch = resp.data.results
-                            console.log(this.arraySearch);
+                            console.log(this.arraySearch)
+
+
+
+
+
+
+
+                            //Messaggio di errore per mancata ricerca
+                            if (resp.data.total_results == '') {
+                                // console.log('errore');
+                                this.errore = 'Nothing to show, try again'
+                            }
+
+
 
                             let listLang = []
                             this.arraySearch.forEach(lang => {
