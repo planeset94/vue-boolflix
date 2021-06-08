@@ -12,7 +12,13 @@
     <div id="root">
         <div class="container">
 
-            <ul v-for="el in arraySearch">
+
+            <input v-model="userSearch" placeholder="Looking for anything?">
+            <button @click="callApi()">
+                <span>Search</span>
+            </button>
+
+            <ul v-for="el in arraySearch" v-show="visible">
                 <li>
                     <ol>
                         <li>Titolo: {{el.name}}{{el.title}}</li>
