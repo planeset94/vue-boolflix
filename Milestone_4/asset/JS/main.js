@@ -8,7 +8,7 @@ const app = new Vue(
             partialUrl: 'https://api.themoviedb.org/3/search/multi?',
             apiKey: 'api_key=3e08cf6c1a9102d41852f4ea927dbc55&query=',
             arraySearch: [],
-            visible: true,
+            visible: false,
             flags: 'https://www.countryflags.io/',
             arrayLang: ['en', 'fr', 'te', 'es', 'bn', 'ja', 'tr', 'de', 'nl', 'eu', 'ar', 'gl', 'it', 'cn', 'pt', 'hu', 'ko', 'ru', 'cs', 'po', 'da', 'et', 'th', 'ta', 'tl', 'pl', 'hi'],
             arrayFlags: [
@@ -59,7 +59,7 @@ const app = new Vue(
                             // console.log(this.arraySearch)
 
 
-                            //Messaggio di errore per mancata ricerca
+                            //Messaggio di errore per mancanza di risultati
                             if (resp.data.total_results == '') {
                                 // console.log('errore');
                                 this.errore = 'Nothing to show, try again'
@@ -93,7 +93,7 @@ const app = new Vue(
                                 }
 
 
-                                if (el.poster_path === undefined || el.poster_path === null) {
+                                if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
                                     el.copertina = false
                                 } else {
                                     el.copertina = true

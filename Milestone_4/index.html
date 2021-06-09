@@ -13,7 +13,7 @@
     <div id="root">
 
         <header>
-            <div class="container">
+            <div id="header-container" class="container">
                 <div id="logo">BOOLFIX</div>
                 <div class="search-bar">
                     <input v-model="userSearch" placeholder="Looking for anything?" @keyup.enter="callApi()">
@@ -25,9 +25,10 @@
         </header>
 
 
-        <main>
+        <main :class="visible ? '' : 'h100' ">
             <div class="container">
                 <div class="photo-container d-flex" v-show="visible">
+                    <!-- Se una copertina non è disponibile, non la mostro  -->
                     <ul v-for="el in arraySearch" class="card" :class="el.copertina ? '' : 'not-visible' ">
 
                         <img :src="baseCopertina+el.poster_path">
@@ -47,7 +48,7 @@
 
 
                 </div>
-                <h1>{{errore}}</h1>
+                <h1 class="errore">{{errore}}</h1>
 
             </div>
         </main>
