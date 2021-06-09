@@ -10,7 +10,7 @@ const app = new Vue(
             arraySearch: [],
             visible: true,
             flags: 'https://www.countryflags.io/',
-            arrayLang: ['en', 'fr', 'te', 'es', 'bn', 'ja', 'tr', 'de', 'nl', 'eu', 'ar', 'gl', 'it', 'cn', 'pt', 'hu', 'ko', 'cs'],
+            arrayLang: ['en', 'fr', 'te', 'es', 'bn', 'ja', 'tr', 'de', 'nl', 'eu', 'ar', 'gl', 'it', 'cn', 'pt', 'hu', 'ko', 'ru', 'cs', 'po', 'da', 'et', 'th', 'ta', 'tl', 'pl', 'hi'],
             arrayFlags: [
                 'gb',
                 'fr',
@@ -29,7 +29,17 @@ const app = new Vue(
                 'pt',
                 'hu',
                 'kr',
-                'cz'
+                'cz',
+                'ru',
+                'dk',
+                'ee',
+                'in',
+                'th',
+                'in',
+                'ph',
+                'pl',
+                'hi'
+
             ],
 
 
@@ -82,7 +92,9 @@ const app = new Vue(
 
 
                                 } else {
-                                    console.log('lang not found');
+                                    console.log(`Missing language: ${el.original_language}`);
+                                    // Se non c'è la lingua, dico che è italiano
+                                    el.bandiera = 'undefined'
 
                                 }
 

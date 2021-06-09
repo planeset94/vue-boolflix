@@ -23,9 +23,9 @@
                     <ol>
                         <li>Titolo: {{el.name}}{{el.title}}</li>
                         <li>Titolo originale: {{el.original_name}} {{el.original_title}}</li>
-                        <li v-if="el.bandiera!=='' ">
-                            <img :src=" flags+ el.bandiera +'/flat/64.png'" style="width: 20px;">
-
+                        <li>
+                            <p v-if="el.bandiera=='undefined' ">Lang not fount </p>
+                            <img v-else :src=" flags+ el.bandiera +'/flat/64.png'" style="width: 20px;">
                         </li>
 
 
