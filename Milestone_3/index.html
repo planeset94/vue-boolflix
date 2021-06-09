@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Milestone_3/asset/CSS/style.css">
+    <title>Boolfix</title>
+</head>
+
+<body>
+    <div id="root">
+        <div class="container">
+
+
+            <input v-model="userSearch" placeholder="Looking for anything?" @keyup.enter="callApi()">
+            <button @click="callApi()">
+                <span>Search</span>
+            </button>
+            <div class="d-flex">
+                <ul v-for="el in arraySearch" v-show="visible">
+
+                    <img :src="baseCopertina+el.poster_path">
+                    <li>Titolo: {{el.name}}{{el.title}}</li>
+                    <li>Titolo originale: {{el.original_name}} {{el.original_title}}</li>
+                    <li>
+                        <p v-if="el.bandiera=='undefined' ">Lang not fount </p>
+                        <img v-else :src=" flags+ el.bandiera +'/flat/64.png'" style="width: 20px;">
+                    </li>
+
+                    <li>Voto: {{el.vote_average}}</li>
+
+
+
+                </ul>
+
+
+
+            </div>
+            <h1>{{errore}}</h1>
+
+        </div>
+    </div>
+    <!-- VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!--CDN DI AJAX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+        integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+    <!--  FILE JS -->
+    <script src="../Milestone_3/asset/JS/main.js"></script>
+</body>
+
+</html>
