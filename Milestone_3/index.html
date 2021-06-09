@@ -18,8 +18,8 @@
             <button @click="callApi()">
                 <span>Search</span>
             </button>
-            <div class="d-flex">
-                <ul v-for="el in arraySearch" v-show="visible">
+            <div class="photo-container d-flex">
+                <ul v-for="el in arraySearch" v-show="visible" class="card">
 
                     <img :src="baseCopertina+el.poster_path">
                     <li>Titolo: {{el.name}}{{el.title}}</li>
