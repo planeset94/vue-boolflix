@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+.container{
+    width: 80%;
+    margin:0 auto;
+}
+.d-flex{
+    display: flex;
+    flex-wrap: wrap;    
+}
+.not-visible{
+    display: none;
+}
+
+.photo-container{
+    width: 100%;
+    padding: 2rem 0;
+    
+}
+
+.photo-container .card{
+    border: 1px solid black;
+    margin:2rem 1rem 0 0;
+    
+}
+
