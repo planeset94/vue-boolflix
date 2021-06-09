@@ -46,6 +46,7 @@ const app = new Vue(
 
         methods: {
             callApi() {
+                // Gestione richieste nulle 
                 if (this.userSearch == '') {
                     this.visible = false
                     this.errore = ''
@@ -66,8 +67,6 @@ const app = new Vue(
                             } else {
                                 this.errore = ''
                             }
-
-
 
                             // let listLang = []
                             // this.arraySearch.forEach(lang => {

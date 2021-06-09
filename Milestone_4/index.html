@@ -27,20 +27,25 @@
 
         <main :class="visible ? '' : 'h100' ">
             <div class="container">
-                <div class="photo-container d-flex" v-show="visible">
+                <div class="photo-container" v-show="visible">
+
+
                     <!-- Se una copertina non è disponibile, non la mostro  -->
                     <ul v-for="el in arraySearch" class="card" :class="el.copertina ? '' : 'not-visible' ">
 
                         <img :src="baseCopertina+el.poster_path">
-                        <li>Titolo: {{el.name}}{{el.title}}</li>
-                        <li>Titolo originale: {{el.original_name}} {{el.original_title}}</li>
-                        <li>
-                            <p v-if="el.bandiera=='undefined' ">Lang not fount </p>
-                            <img v-else :src=" flags+ el.bandiera +'/flat/64.png'" style="width: 20px;">
-                        </li>
 
-                        <li>Voto: {{el.vote_average}}</li>
+                        <div class="apparizione">
+                            <li>Titolo: {{el.name}}{{el.title}}</li>
+                            <li>Titolo originale: {{el.original_name}} {{el.original_title}}</li>
+                            <li>Overview: {{el.overview}}</li>
+                            <li>
+                                <p v-if="el.bandiera=='undefined' ">Lang not fount </p>
+                                <img v-else :src=" flags+ el.bandiera +'/flat/64.png'" style="width: 20px;">
+                            </li>
 
+                            <li>Voto: {{el.vote_average}}</li>
+                        </div>
 
 
                     </ul>
