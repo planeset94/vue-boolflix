@@ -68,13 +68,19 @@ const app = new Vue(
                                 this.errore = ''
                             }
 
-                            // let listLang = []
-                            // this.arraySearch.forEach(lang => {
-                            //     if (!listLang.includes(lang.original_language)) {
-                            //         listLang.push(lang.original_language)
-                            //     }
-                            // })
-                            // console.log(listLang);
+                            //AGGIUNGO UN PARAMETRO ALLA MATRICE PER I VOTI
+                            let star
+                            this.arraySearch.forEach(el => {
+                                star = Math.round((el.vote_average * 5) / 10)
+                                el.voto = []
+                                el.voto.length = star
+                            })
+
+
+
+
+
+
 
                             // Ciclo per determinare se la lingua è presente tra quelle mappate
                             this.arraySearch.forEach((el, index) => {
@@ -86,7 +92,6 @@ const app = new Vue(
                                     // console.log(el);
                                 } else {
                                     console.log(`Missing language: ${el.original_language}`);
-                                    // Se non c'è la lingua, dico che è italiano
                                     el.bandiera = 'undefined'
 
                                 }
@@ -94,8 +99,8 @@ const app = new Vue(
                                 //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
                                 if (el.media_type == 'person') {
                                     console.log(index);
-                                    this.arraySearch.splice(index, 1)
-                                    console.log(this.arraySearch);
+                                    // this.arraySearch.splice(index, 1)
+                                    // console.log(this.arraySearch);
 
                                 } else if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
                                     el.copertina = false
@@ -103,24 +108,7 @@ const app = new Vue(
                                     el.copertina = true
                                 }
 
-
-
-
                             })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                         })
 
@@ -132,6 +120,12 @@ const app = new Vue(
                 }
 
             },
+            // stellarVotes() {
+            //     this.arraySearch.forEach(el => {
+
+            //     })
+
+            // },
 
         },
 

@@ -53,6 +53,7 @@ main{
 .photo-container .card{
     margin:2rem 1rem 0 0;    
     position: relative;
+    border: 2px solid white;
    
 }
 
@@ -70,6 +71,10 @@ main{
     overflow-y: auto;
         
 }
+li span, .vote-container span{
+    font-weight: bold;
+    color: white;
+}
 
 .apparizione li{
    padding-top: 0.6rem;
@@ -80,7 +85,23 @@ main{
     display: block;
 }
 
+.vote-container{
+    display: flex;
+    align-items: flex-end;
+}
 
+.star-container{
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: flex-end;
+    
+
+}
+.star-container i{
+    padding-right: 0.5rem;
+    color: #F9BE44;
+    font-size: 1.2rem;
+}
 
 .errore{
     color:whitesmoke;
@@ -89,3 +110,4 @@ main{
     line-height: 100vh;
        
 }
+

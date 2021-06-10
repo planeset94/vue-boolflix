@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="../Milestone_4/asset/CSS/style.css">
     <title>Boolfix</title>
 </head>
@@ -36,15 +39,23 @@
                         <img :src="baseCopertina+el.poster_path">
 
                         <div class="apparizione">
-                            <li>Titolo: {{el.name}}{{el.title}}</li>
-                            <li>Titolo originale: {{el.original_name}} {{el.original_title}}</li>
-                            <li>Overview: {{el.overview}}</li>
-                            <li>
+                            <li> <span>Titolo:</span> {{el.name}}{{el.title}}</li>
+                            <li><span>Titolo originale:</span> {{el.original_name}} {{el.original_title}}</li>
+                            <li> <span>Overview:</span> {{el.overview}}</li>
+                            <!-- <li>
                                 <p v-if="el.bandiera=='undefined' ">Lang not fount </p>
                                 <img v-else :src=" flags+ el.bandiera +'/flat/64.png'" style="width: 20px;">
-                            </li>
-
-                            <li>Voto: {{el.vote_average}}</li>
+                            </li> -->
+                            <div class="vote-container">
+                                <span>
+                                    Voto:
+                                </span>
+                                <div class="star-container">
+                                    <li v-for="star in el.voto" class="star">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                </div>
+                            </div>
                         </div>
 
 
