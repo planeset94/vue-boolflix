@@ -1,0 +1,113 @@
+/* General rules  */
+
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+body{
+    background-color: #434343;
+}
+.container{
+    width: 90%;
+    margin:0 auto;    
+}
+
+.not-visible{
+    display: none;
+}
+
+/* Header rules  */
+header{
+    background-color: black;
+    position: relative;
+
+}
+#header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.7rem 0 0.7rem 0; 
+
+}
+#logo{
+    color: red;
+    font-size: 1.5rem;
+}
+.search-bar span{
+padding: 10px;
+}
+
+/* main rules  */
+main{
+  background-color: #434343;
+  padding: 2rem 0;
+}
+.photo-container{
+    width: 100%;   
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: space-between;
+}
+
+.photo-container .card{
+    margin:2rem 1rem 0 0;    
+    position: relative;
+    border: 2px solid white;
+   
+}
+
+.apparizione{
+    display: none;
+    height: 100%;
+    list-style: none;  
+    color: whitesmoke;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background-color: black;
+    overflow-y: auto;
+        
+}
+li span, .vote-container span{
+    font-weight: bold;
+    color: white;
+}
+
+.apparizione li{
+   padding-top: 0.6rem;
+   line-height: normal;
+}
+
+.card:hover .apparizione{
+    display: block;
+}
+
+.vote-container{
+    display: flex;
+    align-items: flex-end;
+}
+
+.star-container{
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: flex-end;
+    
+
+}
+.star-container i{
+    padding-right: 0.5rem;
+    color: #F9BE44;
+    font-size: 1.2rem;
+}
+
+.errore{
+    color:whitesmoke;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100vh;
+       
+}
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="../Milestone_5/asset/CSS/style.css">
+    <title>Boolfix</title>
+</head>
+
+<body>
+    <div id="root">
+
+        <header>
+            <div id="header-container" class="container">
+                <div id="logo">BOOLFIX</div>
+                <div class="search-bar">
+                    <input v-model="userSearch" placeholder="Looking for anything?" @keyup.enter="callsApi()">
+                    <button @click="callsApi()">
+                        <span>Search</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+
+        <main>
+            <div class="container">
+                <div class="photo-container" v-show="visible">
+
+
+                    <!-- Se una copertina non è disponibile, non la mostro  -->
+                    <ul v-for="(el,index) in arrayShow" class="card">
+
+                        <img :src="baseCopertina+el.poster_path">
+
+                        <div class="apparizione">
+                            <li> <span>Titolo:</span> {{el.name}}{{el.title}}</li>
+                            <li><span>Titolo originale:</span> {{el.original_name}} {{el.original_title}}</li>
+                            <li> <span>Overview:</span> {{el.overview}}</li>
+
+                            <!-- <li>
+                                <p v-if="el.bandiera=='undefined' ">Lang not fount </p>
+                                <img v-else :src=" flags+ el.bandiera +'/flat/64.png'" style="width: 20px;">
+                            </li> -->
+                            <div class="vote-container">
+                                <span>
+                                    Voto:
+                                </span>
+                                <div class="star-container">
+                                    <li v-for="star in el.voto" class="star">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+                    </ul>
+
+
+
+                </div>
+                <h1 class="errore">{{errore}}</h1>
+
+            </div>
+        </main>
+    </div>
+    <!-- VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!--CDN DI AJAX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+        integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+    <!--  FILE JS -->
+    <script src="../Milestone_5/asset/JS/main.js"></script>
+</body>
+
+</html>
