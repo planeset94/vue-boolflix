@@ -50,7 +50,11 @@ const app = new Vue(
 
         methods: {
 
+
+
             callApi() {
+
+                this.arraySearch = ''
                 // Gestione richieste nulle 
                 if (this.userSearch == '') {
                     this.visible = false
@@ -118,6 +122,7 @@ const app = new Vue(
                             })
 
                         })
+                        .then(this.arraySearch = this.arrayMovie)
 
                         .catch(e => {
                             this.errore = `Huston, We Have a Problem! --- ${e} `
@@ -160,6 +165,7 @@ const app = new Vue(
                             })
 
                         })
+                        .then(this.arraySearch = this.arraySearch.concat(this.arrayTv))
 
                         .catch(e => {
                             this.errore = `Huston, We Have a Problem! --- ${e} `
@@ -168,7 +174,7 @@ const app = new Vue(
 
 
 
-                    this.arraySearch = this.arrayMovie.concat(this.arrayTv)
+
 
 
 
