@@ -5,8 +5,12 @@ const app = new Vue(
         data: {
             errore: '',
             userSearch: '',
-            partialUrl: 'https://api.themoviedb.org/3/search/multi?',
+            // partialUrl: 'https://api.themoviedb.org/3/search/multi?',
+            movielUrl: 'https://api.themoviedb.org/3/search/movie?',
+            tvUrl: 'https://api.themoviedb.org/3/search/tv?',
             apiKey: 'api_key=3e08cf6c1a9102d41852f4ea927dbc55&query=',
+            arrayMovie: [],
+            arrayTv: [],
             arraySearch: [],
             visible: false,
             flags: 'https://www.countryflags.io/',
@@ -45,6 +49,7 @@ const app = new Vue(
         },
 
         methods: {
+
             callApi() {
                 // Gestione richieste nulle 
                 if (this.userSearch == '') {
@@ -52,11 +57,12 @@ const app = new Vue(
                     this.errore = ''
                 } else {
                     this.visible = true
+
                     axios
-                        .get(this.partialUrl + this.apiKey + this.userSearch)
+                        .get(this.movielUrl + this.apiKey + this.userSearch)
                         .then(resp => {
                             // console.log(resp.data.results);
-                            this.arraySearch = resp.data.results
+                            this.arrayMovie = resp.data.results
                             // console.log(this.arraySearch)
 
 
@@ -70,39 +76,15 @@ const app = new Vue(
 
                             //AGGIUNGO UN PARAMETRO ALLA MATRICE PER I VOTI
                             let star
-                            this.arraySearch.forEach(el => {
+                            this.arrayMovie.forEach(el => {
                                 star = Math.round((el.vote_average * 5) / 10)
                                 el.voto = []
                                 el.voto.length = star
                             })
 
-
-
-
-
-
-
-                            // Ciclo per determinare se la lingua è presente tra quelle mappate
-                            this.arraySearch.forEach((el, index) => {
-                                // console.log(el.original_language);
-                                if (this.arrayLang.indexOf(el.original_language) !== -1) {
-                                    let position = this.arrayLang.indexOf(el.original_language)
-                                    // console.log(this.arrayFlags[position])
-                                    el.bandiera = this.arrayFlags[position]
-                                    // console.log(el);
-                                } else {
-                                    console.log(`Missing language: ${el.original_language}`);
-                                    el.bandiera = 'undefined'
-
-                                }
-
-                                //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
-                                if (el.media_type == 'person') {
-                                    console.log(index);
-                                    // this.arraySearch.splice(index, 1)
-                                    // console.log(this.arraySearch);
-
-                                } else if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
+                            //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
+                            this.arrayMovie.forEach((el, index) => {
+                                if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
                                     el.copertina = false
                                 } else {
                                     el.copertina = true
@@ -117,15 +99,66 @@ const app = new Vue(
                         })
 
 
+
+                    axios
+                        .get(this.tvUrl + this.apiKey + this.userSearch)
+                        .then(resp => {
+                            // console.log(resp.data.results);
+                            this.arrayTv = resp.data.results
+                            // console.log(this.arraySearch)
+
+
+                            //Messaggio di errore per mancanza di risultati
+                            if (resp.data.total_results == '') {
+                                // console.log('errore');
+                                this.errore = 'Nothing to show, try again'
+                            } else {
+                                this.errore = ''
+                            }
+
+                            //AGGIUNGO UN PARAMETRO ALLA MATRICE PER I VOTI
+                            let star
+                            this.arrayTv.forEach(el => {
+                                star = Math.round((el.vote_average * 5) / 10)
+                                el.voto = []
+                                el.voto.length = star
+                            })
+
+                            //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
+                            this.arrayTv.forEach((el, index) => {
+                                if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
+                                    el.copertina = false
+                                } else {
+                                    el.copertina = true
+                                }
+
+                            })
+
+                        })
+
+                        .catch(e => {
+                            this.errore = `Huston, We Have a Problem! --- ${e} `
+                        })
+
+
+
+
+                    this.arraySearch = this.arrayMovie.concat(this.arrayTv)
+
+
+
+
+
+
+
+
+
+
+
                 }
 
             },
-            // stellarVotes() {
-            //     this.arraySearch.forEach(el => {
 
-            //     })
-
-            // },
 
         },
 
