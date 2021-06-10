@@ -12,7 +12,7 @@ const app = new Vue(
             arrayMovie: [],
             arrayTv: [],
             arraySearch: [],
-            visible: false,
+            visible: true,
             flags: 'https://www.countryflags.io/',
             arrayLang: ['en', 'fr', 'te', 'es', 'bn', 'ja', 'tr', 'de', 'nl', 'eu', 'ar', 'gl', 'it', 'cn', 'pt', 'hu', 'ko', 'ru', 'cs', 'po', 'da', 'et', 'th', 'ta', 'tl', 'pl', 'hi'],
             arrayFlags: [
@@ -49,70 +49,43 @@ const app = new Vue(
         },
 
         methods: {
+            getArrayTv() {
+                return axios.get(this.movielUrl + this.apiKey + this.userSearch);
+            },
 
+            getArrayMovie() {
+                return axios.get(this.tvUrl + this.apiKey + this.userSearch);
+            },
 
+            getStar(arr) {
+                let star
+                arr.forEach(el => {
+                    star = Math.round((el.vote_average * 5) / 10)
+                    el.voto = []
+                    el.voto.length = star
+                })
+            },
 
-            callApi() {
+            callsApi() {
+                this.arraySearch = []
 
-                this.arraySearch = ''
-                // Gestione richieste nulle 
                 if (this.userSearch == '') {
                     this.visible = false
                     this.errore = ''
                 } else {
                     this.visible = true
 
+                    Promise.all([this.getArrayTv(), this.getArrayMovie()])
+                        .then(res => {
+                            this.arrayTv = res[0].data.results;
+                            this.arrayMovie = res[1].data.results;
+                            this.arraySearch = this.arrayTv.concat(this.arrayMovie)
+                            //Converto il vote_average in una matrice di N elementi, al fine di poterci ciclare in HTML
+                            this.getStar(this.arraySearch)
 
 
-                    // function getArrayTv() {
-                    //     return axios.get(this.movielUrl + this.apiKey + this.userSearch);
-                    //   }
-
-                    //   function getArrayMovie() {
-                    //     return axios.get(this.tvUrl + this.apiKey + this.userSearch);
-                    //   }
-
-                    //   Promise.all([getArrayTv(), getArrayMovie()])
-                    //     .then(function (results) {
-                    //       this.arrayTv = results[0];
-                    //       this.arrayMovie = results[1];
-                    //     });
-
-
-
-
-                    axios
-                        .get(this.movielUrl + this.apiKey + this.userSearch)
-                        .then(resp => {
-                            // console.log(resp.data.results);
-                            this.arrayMovie = resp.data.results
-                            // console.log(this.arraySearch)
-
-
-                            //Messaggio di errore per mancanza di risultati
-                            if (resp.data.total_results == '') {
-                                // console.log('errore');
-                                this.errore = 'Nothing to show, try again'
-                            } else {
-                                this.errore = ''
-                            }
-
-                            //AGGIUNGO UN PARAMETRO ALLA MATRICE PER I VOTI
-
-                            function getStar(arr) {
-                                let star
-                                arr.forEach(el => {
-                                    star = Math.round((el.vote_average * 5) / 10)
-                                    el.voto = []
-                                    el.voto.length = star
-                                })
-
-
-                            }
-
-
-                            //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
-                            this.arrayMovie.forEach((el, index) => {
+                            //Condizioni per nascondere i contenuti senza copertina
+                            this.arraySearch.forEach((el) => {
                                 if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
                                     el.copertina = false
                                 } else {
@@ -122,99 +95,13 @@ const app = new Vue(
                             })
 
                         })
-                        .then(this.arraySearch = this.arrayMovie)
-
                         .catch(e => {
                             this.errore = `Huston, We Have a Problem! --- ${e} `
                         })
-
-
-
-                    axios
-                        .get(this.tvUrl + this.apiKey + this.userSearch)
-                        .then(resp => {
-                            // console.log(resp.data.results);
-                            this.arrayTv = resp.data.results
-                            // console.log(this.arraySearch)
-
-
-                            //Messaggio di errore per mancanza di risultati
-                            if (resp.data.total_results == '') {
-                                // console.log('errore');
-                                this.errore = 'Nothing to show, try again'
-                            } else {
-                                this.errore = ''
-                            }
-
-                            //AGGIUNGO UN PARAMETRO ALLA MATRICE PER I VOTI
-                            let star
-                            this.arrayTv.forEach(el => {
-                                star = Math.round((el.vote_average * 5) / 10)
-                                el.voto = []
-                                el.voto.length = star
-                            })
-
-                            //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
-                            this.arrayTv.forEach((el, index) => {
-                                if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
-                                    el.copertina = false
-                                } else {
-                                    el.copertina = true
-                                }
-
-                            })
-
-                        })
-                        .then(this.arraySearch = this.arraySearch.concat(this.arrayTv))
-
-                        .catch(e => {
-                            this.errore = `Huston, We Have a Problem! --- ${e} `
-                        })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
-
             },
 
-
         },
-
-        mounted() {
-
-
-
-
-
-
-        },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
