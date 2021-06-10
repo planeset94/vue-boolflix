@@ -76,8 +76,8 @@ const app = new Vue(
                             // })
                             // console.log(listLang);
 
-
-                            this.arraySearch.forEach(el => {
+                            // Ciclo per determinare se la lingua è presente tra quelle mappate
+                            this.arraySearch.forEach((el, index) => {
                                 // console.log(el.original_language);
                                 if (this.arrayLang.indexOf(el.original_language) !== -1) {
                                     let position = this.arrayLang.indexOf(el.original_language)
@@ -91,8 +91,13 @@ const app = new Vue(
 
                                 }
 
+                                //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
+                                if (el.media_type == 'person') {
+                                    console.log(index);
+                                    this.arraySearch.splice(index, 1)
+                                    console.log(this.arraySearch);
 
-                                if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
+                                } else if (el.poster_path === undefined || el.poster_path === null || el.poster_path === '') {
                                     el.copertina = false
                                 } else {
                                     el.copertina = true
