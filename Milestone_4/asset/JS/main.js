@@ -5,7 +5,6 @@ const app = new Vue(
         data: {
             errore: '',
             userSearch: '',
-            // partialUrl: 'https://api.themoviedb.org/3/search/multi?',
             movielUrl: 'https://api.themoviedb.org/3/search/movie?',
             tvUrl: 'https://api.themoviedb.org/3/search/tv?',
             apiKey: 'api_key=3e08cf6c1a9102d41852f4ea927dbc55&query=',
