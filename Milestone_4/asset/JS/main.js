@@ -58,6 +58,25 @@ const app = new Vue(
                 } else {
                     this.visible = true
 
+
+
+                    // function getArrayTv() {
+                    //     return axios.get(this.movielUrl + this.apiKey + this.userSearch);
+                    //   }
+
+                    //   function getArrayMovie() {
+                    //     return axios.get(this.tvUrl + this.apiKey + this.userSearch);
+                    //   }
+
+                    //   Promise.all([getArrayTv(), getArrayMovie()])
+                    //     .then(function (results) {
+                    //       this.arrayTv = results[0];
+                    //       this.arrayMovie = results[1];
+                    //     });
+
+
+
+
                     axios
                         .get(this.movielUrl + this.apiKey + this.userSearch)
                         .then(resp => {
@@ -75,12 +94,18 @@ const app = new Vue(
                             }
 
                             //AGGIUNGO UN PARAMETRO ALLA MATRICE PER I VOTI
-                            let star
-                            this.arrayMovie.forEach(el => {
-                                star = Math.round((el.vote_average * 5) / 10)
-                                el.voto = []
-                                el.voto.length = star
-                            })
+
+                            function getStar(arr) {
+                                let star
+                                arr.forEach(el => {
+                                    star = Math.round((el.vote_average * 5) / 10)
+                                    el.voto = []
+                                    el.voto.length = star
+                                })
+
+
+                            }
+
 
                             //Condizioni aggiuntive per filtrare i risultati di persone e nascondere i contenuti senza copertina
                             this.arrayMovie.forEach((el, index) => {
