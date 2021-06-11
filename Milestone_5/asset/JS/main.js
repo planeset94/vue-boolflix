@@ -70,15 +70,15 @@ const app = new Vue(
 
 
             callsApi() {
-                this.arraySearch = []
-                this.arrayShow = []
+
 
                 if (this.userSearch == '') {
                     this.visible = false
                     this.errore = ''
                 } else {
                     this.visible = true
-
+                    this.arraySearch = []
+                    this.arrayShow = []
                     Promise.all([this.getArrayTv(), this.getArrayMovie()])
                         .then(res => {
                             this.arrayTv = res[0].data.results;
@@ -129,19 +129,38 @@ const app = new Vue(
         },
         mounted() {
 
-            this.arrayShow.forEach((el) => {
 
-                axios
-                    .get(this.creditsMovie + el.id + '/credits?' + this.apiKey)
-                    .then((resp) => {
-                        el.caracter = resp.data.cast
 
-                    })
-                    .catch(e => {
-                        console.log(e);
-                    })
 
-            })
+
+
+
+            axios
+            // .get(this.creditsMovie + 522931 + '/credits?' + this.apiKey)
+            // .then((resp) => {
+            //     var teta = resp.data.cast
+            //     console.log(teta);
+            // })
+            // .catch(e => {
+            //     console.log(e);
+            // })
+
+
+
+
+            // this.arrayShow.forEach((el) => {
+
+            //     axios
+            //         .get(this.creditsMovie + el.id + '/credits?' + this.apiKey)
+            //         .then((resp) => {
+            //             el.caracter = resp.data.cast
+
+            //         })
+            //         .catch(e => {
+            //             console.log(e);
+            //         })
+
+            // })
 
 
 
