@@ -65,6 +65,7 @@ const app = new Vue(
                 })
             },
 
+
             callsApi() {
                 this.arraySearch = []
 

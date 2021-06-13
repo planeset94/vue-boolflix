@@ -99,8 +99,11 @@ li span, .vote-container span{
 }
 .star-container i{
     padding-right: 0.5rem;
-    color: #F9BE44;
     font-size: 1.2rem;
+}
+
+.star-container #colored{
+    color: #F9BE44;
 }
 
 .errore{

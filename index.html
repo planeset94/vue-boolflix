@@ -34,7 +34,7 @@
 
 
                     <!-- Se una copertina non è disponibile, non la mostro  -->
-                    <ul v-for="(el,index) in arrayShow" class="card">
+                    <ul v-for="el in arraySearch" class="card" :class="el.copertina ? '' : 'not-visible' ">
 
                         <img :src="baseCopertina+el.poster_path">
 
@@ -52,16 +52,11 @@
                                     Voto:
                                 </span>
                                 <div class="star-container">
-                                    <li v-for="star in el.voto" class="star">
-                                        <i class="fas fa-star"></i>
-                                    </li>
+                                    <i id="colored" v-for="star in el.voto" class="fas fa-star"></i>
+                                    <i v-for="x in (5 - el.voto.length)" class="far fa-star"></i>
                                 </div>
-
                             </div>
                             <li> <span>Overview:</span> {{el.overview}}</li>
-
-
-
                         </div>
 
 

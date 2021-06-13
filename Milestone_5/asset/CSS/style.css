@@ -90,17 +90,13 @@ li span, .vote-container span{
     align-items: flex-end;
 }
 
-.star-container{
-    margin-left: 0.5rem;
-    display: flex;
-    align-items: flex-end;
-    
-
-}
 .star-container i{
     padding-right: 0.5rem;
-    color: #F9BE44;
     font-size: 1.2rem;
+}
+
+.star-container #colored{
+    color: #F9BE44;
 }
 
 .errore{
