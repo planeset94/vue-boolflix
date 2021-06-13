@@ -56,15 +56,18 @@ const app = new Vue(
                 return axios.get(this.tvUrl + this.apiKey + this.userSearch);
             },
 
-            getStar(arr) {
-                let star
-                arr.forEach(el => {
-                    star = Math.round((el.vote_average * 5) / 10)
-                    el.voto = []
-                    el.voto.length = star
-                })
-            },
+            // getStar(arr) {
+            //     let star
+            //     arr.forEach(el => {
+            //         star = Math.round((el.vote_average * 5) / 10)
+            //         el.voto = []
+            //         el.voto.length = star
+            //     })
+            // },
 
+            getNumber(x) {
+                return Math.round((x * 5) / 10)
+            },
 
             callsApi() {
                 this.arraySearch = []
@@ -81,7 +84,7 @@ const app = new Vue(
                             this.arrayMovie = res[1].data.results;
                             this.arraySearch = this.arrayTv.concat(this.arrayMovie)
                             //Converto il vote_average in una matrice di N elementi, al fine di poterci ciclare in HTML
-                            this.getStar(this.arraySearch)
+                            // this.getStar(this.arraySearch)
 
 
                             //Condizioni per nascondere i contenuti senza copertina

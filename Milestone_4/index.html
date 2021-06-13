@@ -52,8 +52,8 @@
                                     Voto:
                                 </span>
                                 <div class="star-container">
-                                    <i id="colored" v-for="star in el.voto" class="fas fa-star"></i>
-                                    <i v-for="x in (5 - el.voto.length)" class="far fa-star"></i>
+                                    <i id="colored" v-for="star in getNumber(el.vote_average)" class="fas fa-star"></i>
+                                    <i v-for="x in (5 - getNumber(el.vote_average))" class="far fa-star"></i>
                                 </div>
                             </div>
                             <li> <span>Overview:</span> {{el.overview}}</li>
